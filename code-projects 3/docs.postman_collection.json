@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "83b833f7-9829-4524-bc01-f06ae694ccd5",
+		"name": "testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Enrollee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Dunzeon Master\",\n    \"dob\": \"1990-10-13\",\n    \"actvStatus\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/enrollee",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"enrollee"
+					]
+				},
+				"description": "Request for creating a new Enrollee in the System. Enrollee details include (JSON keys)\n1. name - Name\n2. dob - Date of Birth\n3. actvStatus - Activation Status\n4. phoneNumber - Phone Number"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Enrollee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"No Body\",\n    \"actvStatus\": true,\n    \"phoneNumber\": \"667-354-7890\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/enrollee/{enrollee_id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"enrollee",
+						"{enrollee_id}"
+					]
+				},
+				"description": "For updating Enrollee details. Enrollee details include (JSON keys)\n1. name - Name\n2. dob - Date of Birth\n3. actvStatus - Activation Status\n4. phoneNumber - Phone Number"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Enrollee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/enrollee/{enrollee_id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"enrollee",
+						"{enrollee_id}"
+					]
+				},
+				"description": "Remove an Enrollee entirely from our system, including it's dependents"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Enrollees dependents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"name\": \"Beta Dependent\",\n        \"dob\": \"1991-10-19\"\n    },\n    {\n        \"name\": \"Beta Dependent 2\",\n        \"dob\": \"1992-10-19\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/dependent/{enrollee_id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"dependent",
+						"{enrollee_id}"
+					]
+				},
+				"description": "Adding new dependents to an enrollee, where Dependent fields are \n1. name\n2. dob"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Dependent Details",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"5fda63c3cf5e5341c97d41fb\",\n        \"name\": \"Beta Dependent\",\n        \"dob\": \"1991-10-19\"\n    },\n    {\n        \"id\": \"5fda63c3cf5e5341c97d41fc\",\n        \"name\": \"Beta Dependent 2\",\n        \"dob\": \"1992-10-19\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/dependent/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"dependent",
+						"update"
+					]
+				},
+				"description": "Updating existing details of one or more Dependents. Dependent ID must be provided of each Dependent in array."
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Dependents of Enrollee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"5fda22b30f7cbf3b7179c8e2\",\n    \"5fda22b30f7cbf3b7179c8e3\"\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/dependent/delete/{enrollee_id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"dependent",
+						"delete",
+						"{enrollee_id}"
+					]
+				},
+				"description": "Remove Dependents from an Enrollee by providing \n1. enrollee ID (path param)\n2. IDs of dependents to remove (as list in body)"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
